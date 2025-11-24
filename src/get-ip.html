@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>🎯 Mon IP pour la Base de Données</h2>
+    <button onclick="showIP()">Voir mon IP</button>
+    <div id="ip" style="font-size: 20px; margin: 20px;"></div>
+    
+    <script>
+        async function showIP() {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            document.getElementById('ip').innerHTML = 
+                `<strong>${data.ip}</strong><br>
+                 <button onclick="copyIP('${data.ip}')">📋 Copier</button>
+                 <p>Envoie cette IP au responsable</p>`;
+        }
+        
+        function copyIP(ip) {
+            navigator.clipboard.writeText(ip);
+            alert('IP copiée !');
+        }
+    </script>
+</body>
+</html>
